@@ -1,127 +1,30 @@
 
 const express = require('express');
-const app = express();
-const multer = require('multer');
 const mongoose = require('mongoose');
-const path = require('path');
 const cors = require('cors');
+const path = require('path');
+const produtoRoutes = require('./routes/produto-route');
 
-mongoose.connect('mongodb+srv://marcosvmdilly:6tASWUR7sD6KNnDN@cluster0.ldz1kzb.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', { useNewUrlParser: true, useUnifiedTopology: true });
+const app = express();
 
-const produtoSchema = new mongoose.Schema({
-  nome: String,
-  descricao: String,
-  preco: Number,
-  imagem: String
+// Conexão MongoDB
+mongoose.connect('mongodb+srv://nineteenensl:123qweasdzxc@cluster0.qxiaw2u.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-const Produto = mongoose.model('Produto', produtoSchema);
-
-app.get('/', (req, res) => {
-    res.json({ message: 'Cadastro de produtos!'});
-});
-
-const corsOptions = {
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-};
-
-app.use(cors(corsOptions));
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads/');
-  },
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '-' + file.originalname);
-  }
-});
-
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
-      cb(null, true);
-    } else {
-      cb(null, false);
-    }
-  }
-});
-
+// Middleware
+app.use(cors({ origin: '*', methods: ['GET', 'POST', 'PUT', 'DELETE'], allowedHeaders: ['Content-Type', 'Authorization'] }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Adaptação para o express
 app.use(express.static('uploads'));
 
-// Criar produto
-app.post('/produtos', upload.single('imagem'), (req, res) => {
-  const produto = new Produto({
-    nome: req.body.nome,
-    descricao: req.body.descricao,
-    preco: req.body.preco,
-    imagem: req.file.filename
-  });
-  produto.save().then(() => {
-    res.send('Produto criado com sucesso!');
-  }).catch((err) => {
-    res.status(500).send({ message: 'Erro ao criar produto' });
-  });
-});
+// Rotas
+app.get('/', (req, res) => res.json({ message: '19SL API' }));
+app.use('/produtos', produtoRoutes);
 
-// Listar produtos
-app.get('/produtos', (req, res) => {
-  Produto.find().then((produtos) => {
-    res.json(produtos);
-  }).catch((err) => {
-    res.status(500).send({ message: 'Erro ao listar produtos' });
-  });
-});
-
-// Buscar produto por ID
-app.get('/produtos/:id', (req, res) => {
-  Produto.findById(req.params.id).then((produto) => {
-    if (!produto) {
-      res.status(404).send({ message: 'Produto não encontrado' });
-    } else {
-      res.json(produto);
-    }
-  }).catch((err) => {
-    res.status(500).send({ message: 'Erro ao buscar produto' });
-  });
-});
-
-// Atualizar produto
-app.put('/produtos/:id', upload.single('imagem'), (req, res) => {
-  Produto.findById(req.params.id).then((produto) => {
-    if (!produto) {
-      res.status(404).send({ message: 'Produto não encontrado' });
-    } else {
-      produto.nome = req.body.nome;
-      produto.descricao = req.body.descricao;
-      produto.preco = req.body.preco;
-      if (req.file) {
-        produto.imagem = req.file.filename;
-      }
-      produto.save().then(() => {
-        res.send('Produto atualizado com sucesso!');
-      }).catch((err) => {
-        res.status(500).send({ message: 'Erro ao atualizar produto' });
-      });
-    }
-  }).catch((err) => {
-    res.status(500).send({ message: 'Erro ao buscar produto' });
-  });
-});
-
-// Deletar produto
-app.delete('/produtos/:id', (req, res) => {
-  Produto.findByIdAndDelete(req.params.id).then(() => {
-    res.send('Produto deletado com sucesso!');
-  }).catch((err) => {
-    res.status(500).send({ message: 'Erro ao deletar produto' });
-  });
-});
-
-app.listen(3000, () => {
-  console.log('Servidor rodando na porta 3000');
-});
+// Iniciar servidor
+app.listen(3000, () => console.log('Servidor rodando na porta 3000'));

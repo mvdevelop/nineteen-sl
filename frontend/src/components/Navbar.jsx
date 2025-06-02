@@ -12,12 +12,12 @@ function Navbar() {
     <div className='navbar'>
         <div className='title'>
             <img src={logo} alt="" />
-            <h2>Tech Store</h2>
+            <h2>19 SL</h2>
         </div>
         <nav>
             <a href="">Home</a>
-            <a href="">Products</a>
-            <a href="">Contact</a>
+            <a href="">Content</a>
+            <a href="">Contact Us</a>
             <a href="">Extra</a>
         </nav>
         <div className='src'>

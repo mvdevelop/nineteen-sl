@@ -8,7 +8,7 @@ import Card from 'react-bootstrap/Card';
 import './App.css';
 
 function App() {
-  const [products, setProducts] = useState([]);
+  const [ products, setProducts ] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,14 +29,13 @@ function App() {
       <Navbar />
       <div className='container'>
         {Array.isArray(products) && products.map((item, index) => (
-          <div key={item.id || `product-${index}`}>
+          <div className='card' key={item.id || `product-${index}`}>
             <Card style={{ width: '18rem' }}>
               <Card.Img className='img' variant="top" src={`http://localhost:3000/${item.imagem}`} />
-              <Card.Body className='card'>
-                <Card.Title>{item.nome}</Card.Title>
-                <Card.Text>{item.descricao}</Card.Text>
-                <Card.Text>{item.preco}</Card.Text>
-                <Button variant="primary">Comprar</Button>
+              <Card.Body className='body'>
+                <Card.Title className='name'>{item.nome}</Card.Title>
+                <Card.Text className='description'>{item.descricao}</Card.Text>
+                <button>Content</button>
               </Card.Body>
             </Card>
           </div>
