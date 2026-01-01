@@ -1,43 +1,51 @@
 
-## 🧪 Nineteen-SL (Studies Library)
-
-O **Nineteen-SL** é um repositório de estudos focado na exploração de componentes modernos e padrões de design utilizando **React** e **Bootstrap 5**. O projeto serve como um laboratório prático para testar fluxos de trabalho com o **Vite**, garantindo uma experiência de desenvolvimento rápida e uma interface de usuário altamente responsiva.
+## 🇺🇸 Nineteen English
+O Nineteen English é uma plataforma interativa de aprendizado de inglês desenvolvida para proporcionar uma experiência de estudo dinâmica e moderna. O projeto utiliza o poder do Vite + React para alta performance e o Tailwind CSS para uma interface personalizada, focada totalmente na experiência do usuário (UX) durante a jornada de aprendizado.
 
 ## 🚀 Objetivos do Projeto
+Aprendizado Imersivo: Criação de módulos de estudo que facilitam a fixação do idioma.
 
-* **Domínio de Hooks:** Prática intensiva de `useState`, `useEffect` e custom hooks.
-* **Integração Bootstrap:** Implementação do Bootstrap 5 tanto via classes utilitárias quanto através da biblioteca `react-bootstrap`.
-* **Performance:** Utilização do Vite para carregamento instantâneo de módulos (HMR).
-* **Componentização:** Criação de uma biblioteca de componentes reutilizáveis e organizados.
+Feedback em Tempo Real: Implementação de notificações inteligentes com React Toastify para acertos, erros e avisos.
+
+Design Utilitário: Uso avançado de Tailwind CSS para criar um layout limpo, focado no conteúdo e totalmente responsivo.
+
+Performance Otimizada: Build rápida e desenvolvimento ágil utilizando a infraestrutura do Vite.
 
 ## 🛠️ Tecnologias Utilizadas
+React 18: Construção de interfaces dinâmicas e reativas.
 
-* **React 18**: Construção de interfaces baseadas em componentes.
-* **Vite**: Ferramenta de build de última geração.
-* **Bootstrap 5**: Framework CSS para agilidade no layout e responsividade.
-* **React Icons**: Biblioteca de ícones para enriquecer a UI.
-* **JavaScript (ES6+)**: Lógica e manipulação de dados.
+Vite: Ferramenta de build de última geração para performance instantânea.
+
+Tailwind CSS: Framework CSS utilitário para design moderno e customizado.
+
+React Toastify: Notificações elegantes e informativas para o usuário.
+
+Lucide React / Icons: Biblioteca de ícones minimalistas.
+
+JavaScript (ES6+): Lógica de progresso e manipulação de estados.
 
 ## 📁 Estrutura de Pastas
+Plaintext
 
-nineteen-sl/
+nineteen-english/
 ├── src/
-│   ├── assets/       # Imagens e recursos estáticos
-│   ├── components/   # Componentes de UI (Cards, Navbars, Modais)
-│   ├── hooks/        # Lógica de estado personalizada
-│   ├── pages/        # Telas/Laboratórios de teste
-│   └── App.jsx       # Estrutura principal e roteamento
-├── public/           # Arquivos públicos
-├── index.html        # Ponto de entrada HTML
-└── package.json      # Dependências e scripts
+│   ├── assets/       # Recursos estáticos (Sons, Imagens, Logos)
+│   ├── components/   # Componentes globais (Buttons, Modals, Cards)
+│   ├── hooks/        # Lógica de controle de lições e progresso
+│   ├── pages/        # Telas da plataforma (Dashboard, Lessons, Quiz)
+│   ├── styles/       # Configurações globais do Tailwind
+│   └── App.jsx       # Gerenciamento de rotas e provedores
+├── public/           # Arquivos públicos e favicons
+├── index.html        # Ponto de entrada
+└── tailwind.config.js # Customização de cores e temas
 
 ## 🔧 Como Rodar Localmente
 Clone o repositório:
 
 Bash
 
-git clone [https://github.com/mvdevelop/nineteen-sl.git](https://github.com/mvdevelop/nineteen-sl.git)
-cd nineteen-sl
+git clone https://github.com/mvdevelop/nineteen-english.git
+cd nineteen-english
 Instale as dependências:
 
 Bash
@@ -48,7 +56,10 @@ Inicie o ambiente de desenvolvimento:
 Bash
 
 npm run dev
-O projeto estará disponível em: http://localhost:5173
+A plataforma estará disponível em: http://localhost:5173
+
+## 🎨 Preview da Interface
+Nota: Adicione aqui um print da tela principal de lições ou do sistema de notificações funcionando (ex: Mensagem de sucesso ao completar um exercício).
 
 ## 👨‍💻 Autor
 Desenvolvido por mvdevelop.
